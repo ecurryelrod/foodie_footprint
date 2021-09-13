@@ -1,0 +1,8 @@
+<h2>Restaurants in <%= @location.name %></h2>
+<br>
+<ul>
+    <% @location.restaurants.each do |restaurant| %>
+        Name: <%= restaurant.name %><br>
+        Type: <%= restaurant.food_type %>
+    <% end %> 
+</ul>

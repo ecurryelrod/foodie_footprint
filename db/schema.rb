@@ -20,8 +20,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_221424) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
-    t.string "type"
-    t.string "notes"
+    t.string "food_type"
     t.integer "user_id"
     t.integer "location_id"
     t.datetime "created_at", null: false
@@ -30,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_221424) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "username"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
