@@ -1,0 +1,17 @@
+<h2><%= @restaurant.name %></h2>
+
+<%= @restaurant.food_type %>
+<br><br>
+<h3>Location</h3>
+<%= @restaurant.location.name %>
+<br><br>
+<h3>Favorite Meals</h3>
+<br><br>
+<a href="/restaurants/<%= @restaurant.id %>/edit"><button type="submit">Edit</button></a>
+<a href="/locations"><button type="submit">Home</button></a>
+<br><br>
+<form action="/restaurants/<%= @restaurant.id %>" method="post">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <button type="submit">Delete Restaurant</button>
+</form>
+

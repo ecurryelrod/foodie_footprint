@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         # binding.pry
         if @user.save 
             session[:user_id] = @user.id
-            redirect to '/account'
+            redirect to '/locations'
         else
             flash[:message] = "Please fill in all fields"
             redirect to '/signup'
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     get '/account' do
         @user = User.find(session[:user_id])
-        # binding.pry
+        @location = Location.find_by(params[:slug])
         erb :'/users/account'
     end
 

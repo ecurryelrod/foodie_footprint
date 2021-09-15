@@ -1,0 +1,13 @@
+<h2>Edit <%= @restaurant.name %></h2>
+<form action="/restaurants/<%= @restaurant.id %>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
+    Name: <input type="text" name="restaurant[name]" value="<%= @restaurant.name %>">
+    Type: <input type="text" name="restaurant[food_type]" value="<%= @restaurant.food_type %>">
+    <br><br>
+    <% current_user.locations.each do |location| %>
+        <input type="radio" name="location[id]" value="<%= location.id %>" <%= 'checked' if @restaurant.location == location %>>
+        <%= location.name %>
+    <% end %>
+    <br><br>
+    <button type="submit">Update Restaurant</button>
+</form>

@@ -1,0 +1,17 @@
+<h2>Restaurants in <%= @location.name %></h2>
+<br>
+
+<ul>
+    <% @location.restaurants.each do |restaurant| %>
+        <li>
+            <a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a>
+        </li>
+    <% end %> 
+</ul>
+<br><br>
+<a href="/restaurants/new"><button type="submit">Add a New Restaurant</button></a>
+<br><br>
+<form action="/locations/<%= @location.id %>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <button type="submit">Delete Location</button>
+</form>

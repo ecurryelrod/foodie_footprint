@@ -14,14 +14,23 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    @user = User.find_by(email: params[:user][:email])
+    @user = User.find_by(username: params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect to '/account'
+      redirect to '/locations'
     else
       flash[:message] = "Please create an account to log in"
       redirect to '/signup'
     end
   end
 
+  helpers do 
+    def logged_in?
+      !!current_user
+    end
+
+    def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
+  end
 end
