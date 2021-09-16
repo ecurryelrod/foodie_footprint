@@ -10,7 +10,10 @@ class LocationsController < ApplicationController
 
     get '/locations/:id' do
         if logged_in?
-            @location = Location.find(params[:id])
+            # binding.pry
+            @location = current_user.locations.find(params[:id])
+            @restaurants = @location.restaurants.where(user_id: current_user.id)
+            # @location = Location.find(params[:id])
             erb :'/locations/show'
         else
             redirect to '/login'
@@ -18,7 +21,7 @@ class LocationsController < ApplicationController
     end
 
     post '/locations' do 
-        binding.pry
+        # binding.pry
         # @restaurant = current_user.restaurants.find_or_create_by(params[:restaurant])
         @location = current_user.locations.find_or_create_by(name: params[:location][:name])
         # @restaurant.location = @location

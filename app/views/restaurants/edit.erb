@@ -5,9 +5,12 @@
     Type: <input type="text" name="restaurant[food_type]" value="<%= @restaurant.food_type %>">
     <br><br>
     <% current_user.locations.each do |location| %>
-        <input type="radio" name="location[id]" value="<%= location.id %>" <%= 'checked' if @restaurant.location == location %>>
+        <input type="radio" name="restaurant[location_id]" value="<%= location.id %>" <%= 'checked' if @restaurant.location == location %>>
         <%= location.name %>
     <% end %>
+    <br><br>
+    <h3>Add a New Location</h3>
+    <input type="text" name="@restaurant[:location_id]">
     <br><br>
     <button type="submit">Update Restaurant</button>
 </form>

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect to '/locations'
         else
-            flash[:message] = "Please fill in all fields"
+            flash[:message] = "Try a different username or make sure all fields are filled in."
             redirect to '/signup'
         end
     end
