@@ -19,7 +19,7 @@ class ApplicationController < Sinatra::Base
     @user = User.find_by(username: params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect to '/locations'
+      redirect to "/users/#{@user.slug}"
     elsif params[:user][:name] == "" || params[:user][:password] == ""
       flash[:message] = "Fields cannot be blank. Please enter username and password to log in."
       redirect to '/'
