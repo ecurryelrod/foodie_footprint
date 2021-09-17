@@ -9,7 +9,7 @@ class RestaurantsController < ApplicationController
     # end
 
     get '/restaurants/new' do  
-        if logged_in?       
+        if logged_in?   
             erb :'/restaurants/new'
         else
             redirect to '/login'
@@ -28,12 +28,18 @@ class RestaurantsController < ApplicationController
     post '/restaurants' do 
         if logged_in?
             binding.pry
-            # if params = ""
-            #     flash[:message] = "Must fill in every field"
-            #     redirect to '/restaurants/new'
-            # else
+            # @restaurant = Restaurant.find(params[:restaurant])
+            if params[:restaurant][:name] == "" || params[:restaurant][:food_type] == "" || params[:location][:name] == ""
+                flash[:message] = "Must fill in every field"
+                redirect to '/restaurants/new'
+            else
+                # binding.pry
+                # @restaurant = Restaurant.new(params[:restaurant])
+                
+                # @location = Location.find(params[:id])
                 @restaurant = current_user.restaurants.build(params[:restaurant])
-                @restaurant.location = current_user.locations.find_or_create_by(params[:location])
+                @restaurant.location = Location.find_or_create_by(params[:location][:id])
+                # @restaurant.location = current_user.locations.find_or_create_by(params[:location])
                 # @restaurant = current_user.restaurants.find_or_create_by(params[:restaurant])
                 # @restaurant.location = current_user.locations.build(params[:location])
                 if @restaurant.save
@@ -43,8 +49,9 @@ class RestaurantsController < ApplicationController
                 redirect to '/restaurants/new'
                 end
             # end
-            @restaurant.location = current_user.locations.find_or_create_by(params[:location])
+            # @restaurant.location = current_user.locations.find_or_create_by(params[:location])
             # redirect to "/restaurants/#{@restaurant.id}"
+            end
         else
             redirect to '/login'
         end
@@ -66,6 +73,7 @@ class RestaurantsController < ApplicationController
     patch '/restaurants/:id' do 
         if logged_in?
             @restaurant = Restaurant.find(params[:id])
+            binding.pry
             if params[:restaurant][:name] == "" || params[:restaurant][:food_type] == ""
                 flash[:message] = "Fields cannot be blank"
                 redirect to "/restaurants/#{@restaurant.id}/edit"

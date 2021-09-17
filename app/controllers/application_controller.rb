@@ -1,6 +1,8 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+  use Rack::Flash
 
   configure do
     enable :sessions
@@ -18,8 +20,11 @@ class ApplicationController < Sinatra::Base
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       redirect to '/locations'
+    elsif params[:user][:name] == "" || params[:user][:password] == ""
+      flash[:message] = "Fields cannot be blank. Please enter username and password to log in."
+      redirect to '/'
     else
-      flash[:message] = "Please create an account to log in"
+      flash[:message] = "Unsername does not exist. Please create an account to log in"
       redirect to '/signup'
     end
   end

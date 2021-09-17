@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+    <%= flash[:message] %>
+<% end %>
+
 <h2>Edit <%= @restaurant.name %></h2>
 <form action="/restaurants/<%= @restaurant.id %>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
@@ -9,8 +13,7 @@
         <%= location.name %>
     <% end %>
     <br><br>
-    <h3>Add a New Location</h3>
-    <input type="text" name="@restaurant[:location_id]">
-    <br><br>
-    <button type="submit">Update Restaurant</button>
+    <button type="submit">Update Restaurant</button> 
+    <button type="submit">Cancel</button>
 </form>
+
