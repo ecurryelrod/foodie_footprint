@@ -1,7 +1,7 @@
 <% if flash.has?(:message) %>
     <%= flash[:message] %>
 <% end %>
-
+<h2>Add a New Foodie Footprint</h2>
 <form action="/restaurants" method="post">
     <h3>
         Restaurant Name: <input type="text" name="restaurant[name]">
@@ -12,4 +12,6 @@
     <br>
     <button type="submit">Submit</button>
 </form>
-
+<br><br>
+<a href="/locations"><button type="submit">Cancel</button></a> 
+<a href="/logout"><button type="submit">Logout</button></a>

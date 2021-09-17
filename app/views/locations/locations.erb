@@ -1,15 +1,12 @@
-<h1>Welcome, <%= current_user.name %></h1>
-<br>
+<h2>Welcome, <%= current_user.name %></h2>
+
 <h3>Pick a location to see your favorite restaurants or create a new one below!</h3>
 <br>
 
 <% current_user.locations.each do |location| %>
     <a href="/locations/<%= location.id %>"><%= location.name %></a><br>
 <% end %>
-
-
-
 <br><br>
 <form action="/restaurants/new"><button type="submit">Add a New Restaurant / Location</button></form>
-<br><br><br>
+<br><br>
 <a href="/logout"><button type="submit">Logout</button></a>

@@ -7,6 +7,7 @@
     <input type="hidden" id="hidden" name="_method" value="PATCH">
     Name: <input type="text" name="restaurant[name]" value="<%= @restaurant.name %>">
     Type: <input type="text" name="restaurant[food_type]" value="<%= @restaurant.food_type %>">
+    Notes: <input type="textarea" name="restaurant[notes]" value="<%= @restaurant.notes %>">
     <br><br>
     <% current_user.locations.each do |location| %>
         <input type="radio" name="restaurant[location_id]" value="<%= location.id %>" <%= 'checked' if @restaurant.location == location %>>

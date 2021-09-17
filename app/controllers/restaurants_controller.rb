@@ -27,7 +27,7 @@ class RestaurantsController < ApplicationController
 
     post '/restaurants' do 
         if logged_in?
-            binding.pry
+            # binding.pry
             # @restaurant = Restaurant.find(params[:restaurant])
             if params[:restaurant][:name] == "" || params[:restaurant][:food_type] == "" || params[:location][:name] == ""
                 flash[:message] = "Must fill in every field"
@@ -36,9 +36,10 @@ class RestaurantsController < ApplicationController
                 # binding.pry
                 # @restaurant = Restaurant.new(params[:restaurant])
                 
-                # @location = Location.find(params[:id])
+                # @location = Location.find_or_create_by(params[:location])
                 @restaurant = current_user.restaurants.build(params[:restaurant])
-                @restaurant.location = Location.find_or_create_by(params[:location][:id])
+                @restaurant.location = Location.find_or_create_by(params[:location])
+                # @restaurant.location = Location.find_or_create_by(params[:location][:name])
                 # @restaurant.location = current_user.locations.find_or_create_by(params[:location])
                 # @restaurant = current_user.restaurants.find_or_create_by(params[:restaurant])
                 # @restaurant.location = current_user.locations.build(params[:location])
@@ -73,7 +74,7 @@ class RestaurantsController < ApplicationController
     patch '/restaurants/:id' do 
         if logged_in?
             @restaurant = Restaurant.find(params[:id])
-            binding.pry
+            # binding.pry
             if params[:restaurant][:name] == "" || params[:restaurant][:food_type] == ""
                 flash[:message] = "Fields cannot be blank"
                 redirect to "/restaurants/#{@restaurant.id}/edit"
