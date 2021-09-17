@@ -2,8 +2,6 @@ class Restaurant < ActiveRecord::Base
     belongs_to :user
     belongs_to :location
 
-    # validates :name, presence: true
-
     def slug
         self.name.parameterize
     end
