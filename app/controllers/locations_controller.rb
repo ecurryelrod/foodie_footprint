@@ -22,24 +22,6 @@ class LocationsController < ApplicationController
         end
     end
 
-    # patch '/locations/:id' do 
-    #     if logged_in?
-    #         @location = Location.find(params[:id])
-    #         if params[:location][:name] == ""
-    #             flash[:message] = "Fields cannot be blank"
-    #                 redirect to "/locations/#{@location.id}/edit"
-    #         else
-    #             if @location && @location.users.where(id: current_user.id)
-    #                 if @location.update(params[:location])
-    #                     redirect to '/locations'
-    #                 else
-    #                     redirect to "/locations/#{@location.id}/edit"
-    #                 end
-    #             end
-    #         end
-    #     end
-    # end
-
     delete '/locations/:id' do 
         @location = Location.find(params[:id])
         @user = @location.users.where(id: current_user.id)

@@ -18,12 +18,6 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/account' do
-        @user = User.find(session[:user_id])
-        @location = Location.find_by(params[:slug])
-        erb :'/users/account'
-    end
-
     get '/logout' do
         session.clear
         redirect to '/'
