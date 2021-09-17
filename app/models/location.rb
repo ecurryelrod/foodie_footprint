@@ -1,8 +1,6 @@
 class Location < ActiveRecord::Base
     has_many :restaurants 
     has_many :users, through: :restaurants
-    # belongs_to :user
-    # should a location belong to a user???
 
     validates :name, presence: true
 
@@ -15,6 +13,6 @@ class Location < ActiveRecord::Base
     end
 
     def remove_location_from_user
-        
+
     end
 end
