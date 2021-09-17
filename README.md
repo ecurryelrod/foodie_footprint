@@ -1,4 +1,4 @@
-# Social_Sync Sinatra Project
+# Foodie Footprint Sinatra Project
 
 Welcome to the Foodie Footprint web application! This application allows users to create an account, login, and save their favorite restaurants in cities they frequent or have lived.
 
