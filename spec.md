@@ -17,18 +17,18 @@ Specs:
 - [x] Ensure that users can't modify content created by other users
     - User's can only modify their own content through ```ruby if @restaurant && @restaurant.user == current_user ``` code in each restaurant controller patch or delete action (as seen in below example):
     ```ruby
-    get '/restaurants/:id/edit' do 
-        if logged_in?
-            @restaurant = Restaurant.find(params[:id])
-            if @restaurant && @restaurant.user == current_user
-                erb :'/restaurants/edit'
+        get '/restaurants/:id/edit' do 
+            if logged_in?
+                @restaurant = Restaurant.find(params[:id])
+                if @restaurant && @restaurant.user == current_user
+                    erb :'/restaurants/edit'
+                else
+                    redirect to '/locations'
+                end
             else
-                redirect to '/locations'
+                redirect to '/login'
             end
-        else
-            redirect to '/login'
         end
-    end
     ```
 - [x] Include user input validations
     - Objects will only be persisted to the database if all required fields are filled. If not, the user will receive an error message. Example:
