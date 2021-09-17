@@ -3,18 +3,18 @@ require 'rack-flash'
 class RestaurantsController < ApplicationController
     use Rack::Flash
 
-    get '/restaurants/:id' do 
-        if logged_in?
-            @restaurant = Restaurant.find(params[:id])
-            erb :'/restaurants/show'
+    get '/restaurants/new' do  
+        if logged_in?   
+            erb :'/restaurants/new'
         else
             redirect to '/login'
         end
     end
 
-    get '/restaurants/new' do  
-        if logged_in?   
-            erb :'/restaurants/new'
+    get '/restaurants/:id' do 
+        if logged_in?
+            @restaurant = Restaurant.find(params[:id])
+            erb :'/restaurants/show'
         else
             redirect to '/login'
         end

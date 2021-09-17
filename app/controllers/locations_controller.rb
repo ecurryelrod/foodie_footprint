@@ -7,10 +7,6 @@ class LocationsController < ApplicationController
         @user = User.find(session[:user_id])
         erb :'/locations/locations'
     end
-    
-    get '/locations/new' do 
-        erb :'/locations/new'
-    end
 
     get '/locations/:id' do
         if logged_in?
