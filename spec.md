@@ -15,16 +15,37 @@ Specs:
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
     - Users can create new restaurants and locations through the `/restaurants` URL. A user can edit a restaurant through `restaurants/:id/edit` or delete a restaurant through `/restaurants/:id/edit` URL's. Users can also delete locations associated with themselves but not from the database through `/locations/:id` URL.
 - [x] Ensure that users can't modify content created by other users
-    - User's can only modify their own content through:
+    - User's can only modify their own content through ```ruby if @restaurant && @restaurant.user == current_user ``` code in each restaurant controller patch or delete action (as seen in below example):
     ```ruby
-    
+    get '/restaurants/:id/edit' do 
+        if logged_in?
+            @restaurant = Restaurant.find(params[:id])
+            if @restaurant && @restaurant.user == current_user
+                erb :'/restaurants/edit'
+            else
+                redirect to '/locations'
+            end
+        else
+            redirect to '/login'
+        end
+    end
     ```
-- [ ] Include user input validations
-- [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Include user input validations
+    - Objects will only be persisted to the database if all required fields are filled. If not, the user will receive an error message. Example:
+    ```ruby
+        if params[:restaurant][:name] == "" || params[:restaurant][:food_type] == "" || params[:location][:name] == ""
+                flash[:message] = "Must fill in every field"
+                redirect to '/restaurants/new'
+        else
+        ...
+        end
+    ```
+- [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+    - rack-flash posts messages related to invalid actions due to incorrect user input. (see above for example)
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
-- [ ] You have a large number of small Git commits
-- [ ] Your commit messages are meaningful
-- [ ] You made the changes in a commit that relate to the commit message
-- [ ] You don't include changes in a commit that aren't related to the commit message
+- [x] You have a large number of small Git commits
+- [x] Your commit messages are meaningful
+- [x] You made the changes in a commit that relate to the commit message
+- [x] You don't include changes in a commit that aren't related to the commit message

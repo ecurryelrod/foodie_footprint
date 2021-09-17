@@ -2,7 +2,7 @@ class Location < ActiveRecord::Base
     has_many :restaurants 
     has_many :users, through: :restaurants
 
-    validates :name, presence: true
+    # validates :name, presence: true
 
     def slug
         self.name.parameterize
