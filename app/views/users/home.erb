@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+    <%= flash[:message] %>
+<% end %>
+
 <h2>Welcome, <%= @user.name %></h2>
 
 <h3>Pick a location to see your favorite restaurants or create a new one below!</h3>
