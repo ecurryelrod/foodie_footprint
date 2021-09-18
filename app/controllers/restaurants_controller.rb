@@ -11,9 +11,12 @@ class RestaurantsController < ApplicationController
         end
     end
 
-    get '/restaurants/:id' do 
+    get '/restaurants/:slug' do 
         if logged_in?
-            @restaurant = Restaurant.find(params[:id])
+            # binding.pry
+            @restaurant = Restaurant.find_by_slug(params[:slug])
+            # @location = Location.find_by_slug(params[:slug])
+            # binding.pry
             erb :'/restaurants/show'
         else
             redirect to '/login'
@@ -29,7 +32,7 @@ class RestaurantsController < ApplicationController
                 @restaurant = current_user.restaurants.build(params[:restaurant])
                 @restaurant.location = Location.find_or_create_by(params[:location])
                 if @restaurant.save
-                    redirect to "/restaurants/#{@restaurant.id}"
+                    redirect to "/restaurants/#{@restaurant.slug}"
                 else
                 flash[:message] = "Unable to save restaurant/location. Please try again."
                 redirect to '/restaurants/new'
@@ -40,31 +43,31 @@ class RestaurantsController < ApplicationController
         end
     end
 
-    get '/restaurants/:id/edit' do 
+    get '/restaurants/:slug/edit' do 
         if logged_in?
-            @restaurant = Restaurant.find(params[:id])
+            @restaurant = Restaurant.find_by_slug(params[:slug])
             if @restaurant && @restaurant.user == current_user
                 erb :'/restaurants/edit'
             else
-                redirect to '/locations'
+                redirect to "users/#{current_user.slug}"
             end
         else
             redirect to '/login'
         end
     end
 
-    patch '/restaurants/:id' do 
+    patch '/restaurants/:slug' do 
         if logged_in?
-            @restaurant = Restaurant.find(params[:id])
+            @restaurant = Restaurant.find_by_slug(params[:slug])
             if params[:restaurant][:name] == "" || params[:restaurant][:food_type] == ""
                 flash[:message] = "Fields cannot be blank"
-                redirect to "/restaurants/#{@restaurant.id}/edit"
+                redirect to "/restaurants/#{@restaurant.slug}/edit"
             else
                 if @restaurant && @restaurant.user == current_user
                     if @restaurant.update(params[:restaurant])
-                        redirect to "/restaurants/#{@restaurant.id}"
+                        redirect to "/restaurants/#{@restaurant.slug}"
                     else
-                        redirect to "/restaurants/#{@restaurant.id}/edit"
+                        redirect to "/restaurants/#{@restaurant.slug}/edit"
                     end
                 else
                     redirect to '/login'
@@ -75,12 +78,12 @@ class RestaurantsController < ApplicationController
         end
     end
 
-    delete '/restaurants/:id' do
+    delete '/restaurants/:slug' do
         if logged_in?
-            @restaurant = Restaurant.find(params[:id])
+            @restaurant = Restaurant.find_by_slug(params[:slug])
             if @restaurant && @restaurant.user = current_user
                 @restaurant.delete
-                redirect to '/locations'
+                redirect to "users/#{current_user.slug}"
             end
         else
             redirect to '/login'

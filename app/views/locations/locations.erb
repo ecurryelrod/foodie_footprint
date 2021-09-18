@@ -4,10 +4,10 @@
 <br>
 
 <% current_user.locations.each do |location| %>
-    <a href="/locations/<%= location.id %>"><%= location.name %></a><br>
+    <a href="/locations/<%= location.slug %>"><%= location.name %></a><br>
 <% end %>
 <br><br>
 <form action="/restaurants/new"><button type="submit">Add a New Restaurant / Location</button></form>
 <br><br>
-<a href="/users/<%= current_user.id %>/edit"><button type="submit">Edit Account Information</button></a>
+<a href="/users/<%= current_user.slug %>/edit"><button type="submit">Edit Account Information</button></a>
 <a href="/logout"><button type="submit">Logout</button></a>

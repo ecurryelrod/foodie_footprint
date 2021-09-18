@@ -8,9 +8,9 @@ class LocationsController < ApplicationController
         erb :'/locations/locations'
     end
 
-    get '/locations/:id' do
+    get '/locations/:slug' do
         if logged_in?
-            @location = Location.find(params[:id])
+            @location = Location.find_by_slug(params[:slug])
             @restaurants = @location.restaurants.where(user_id: current_user.id)
             erb :'/locations/show'
         else
@@ -18,8 +18,8 @@ class LocationsController < ApplicationController
         end
     end
 
-    delete '/locations/:id' do 
-        @location = Location.find(params[:id])
+    delete '/locations/:slug' do 
+        @location = Location.find_by_slug(params[:slug])
         @user = @location.users.where(id: current_user.id)
         @location.users.delete(@user)
         redirect to '/locations'

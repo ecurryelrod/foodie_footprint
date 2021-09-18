@@ -4,7 +4,7 @@
 <br>
 
 <% @user.locations.each do |location| %>
-    <a href="/locations/<%= location.id %>"><%= location.name %></a><br>
+    <a href="/locations/<%= location.slug %>"><%= location.name %></a><br>
 <% end %>
 <br><br>
 <form action="/restaurants/new"><button type="submit">Add a New Restaurant / Location</button></form>

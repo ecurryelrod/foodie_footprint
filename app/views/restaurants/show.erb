@@ -9,12 +9,12 @@
 <h3>Notes</h3>
 <%= @restaurant.notes %>
 <br><br>
-<a href="/restaurants/<%= @restaurant.id %>/edit"><button type="submit">Edit</button></a>
+<a href="/restaurants/<%= @restaurant.slug %>/edit"><button type="submit">Edit</button></a>
 <br><br>
-<form action="/restaurants/<%= @restaurant.id %>" method="post">
+<form action="/restaurants/<%= @restaurant.slug %>" method="post">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
     <button type="submit">Delete Restaurant</button>
 </form>
 <br><br>
-<a href="/locations"><button type="submit">Home</button></a> 
+<a href="/users/<%= current_user.slug %>"><button type="submit">Home</button></a> 
 <a href="/logout"><button type="submit">Logout</button></a>

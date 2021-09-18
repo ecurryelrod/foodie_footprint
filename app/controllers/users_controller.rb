@@ -36,7 +36,7 @@ class UsersController < ApplicationController
         @user = User.find(session[:user_id])
         @user.update(params[:user])
         flash[:message] = "Your profile has been updated."
-        redirect "locations"
+        redirect to "/users/#{current_user.slug}"
     end
 
     get '/logout' do

@@ -9,8 +9,4 @@ class Location < ActiveRecord::Base
     def self.find_by_slug(slug)
         self.all.find {|l| l.slug == slug}
     end
-
-    def remove_location_from_user
-
-    end
 end

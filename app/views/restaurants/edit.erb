@@ -3,7 +3,7 @@
 <% end %>
 
 <h2>Edit <%= @restaurant.name %></h2>
-<form action="/restaurants/<%= @restaurant.id %>" method="POST">
+<form action="/restaurants/<%= @restaurant.slug %>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
     Name: <input type="text" name="restaurant[name]" value="<%= @restaurant.name %>">
     Type: <input type="text" name="restaurant[food_type]" value="<%= @restaurant.food_type %>">
