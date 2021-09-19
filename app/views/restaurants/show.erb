@@ -13,7 +13,7 @@
 <br><br>
 <form action="/restaurants/<%= @restaurant.slug %>" method="post">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
-    <button type="submit">Delete Restaurant</button>
+    <button type="submit" class="delete_button">Delete Restaurant</button>
 </form>
 <br><br>
 <a href="/users/<%= current_user.slug %>"><button type="submit">Home</button></a> 

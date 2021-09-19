@@ -13,14 +13,14 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
-    color: #333;
+    background-color: #986D8E;
+    color: black;
     font-family: Sans-Serif;
     line-height: 18px;
   }
 
   .wrapper {
-    background: #fff;
+    background: #87A8A4;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -36,19 +36,31 @@
   }
 
   h2 {
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid black;
     font-size: 24px;
     line-height: 36px;
     margin-bottom: 16px;
   }
 
   h3 {
+    /* color: #EFE3D0; */
     font-size: 18px;
     line-height: 36px;
   }
 
   p {
     margin-bottom: 18px;
+  }
+
+  a {
+    color: #351F39;
+  }
+
+  button {
+    padding: 5px;
+    
+    background-color: #EFE3D0;
+    color: black;
   }
 
   .main {
@@ -77,7 +89,7 @@
   }
 
   footer.branding {
-    border-top: 2px solid #ccc;
+    border-top: 2px solid black;
     margin-top: 20px;
     padding-top: 20px;
   }
