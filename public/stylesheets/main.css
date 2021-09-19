@@ -63,6 +63,10 @@
     color: black;
   }
 
+  input {
+    background-color: #EFE3D0;
+  }
+
   .main {
     overflow: hidden;
   }

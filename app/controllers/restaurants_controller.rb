@@ -13,10 +13,7 @@ class RestaurantsController < ApplicationController
 
     get '/restaurants/:slug' do 
         if logged_in?
-            # binding.pry
             @restaurant = Restaurant.find_by_slug(params[:slug])
-            # @location = Location.find_by_slug(params[:slug])
-            # binding.pry
             erb :'/restaurants/show'
         else
             redirect to '/login'

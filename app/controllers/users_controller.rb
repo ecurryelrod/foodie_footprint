@@ -19,8 +19,13 @@ class UsersController < ApplicationController
     end
 
     get '/users/:slug' do
-        @user = User.find(session[:user_id])
-        erb :'/users/home'
+        if logged_in?
+            @user = User.find(session[:user_id])
+            @locations = @user.locations.order(:name)
+            erb :'/users/home'
+        else
+            redirect to '/'
+        end
     end
 
     get '/users/:slug/edit' do
@@ -33,14 +38,22 @@ class UsersController < ApplicationController
     end
 
     patch '/users/:slug' do
-        @user = User.find(session[:user_id])
-        @user.update(params[:user])
-        flash[:message] = "Your profile has been updated."
-        redirect to "/users/#{@user.slug}"
+        if logged_in?
+            @user = User.find(session[:user_id])
+            @user.update(params[:user])
+            flash[:message] = "Your profile has been updated."
+            redirect to "/users/#{@user.slug}"
+        else
+            redirect to '/'
+        end
     end
 
     get '/logout' do
-        session.clear
-        redirect to '/'
+        if logged_in?
+            session.clear
+            redirect to '/'
+        else 
+            redirect to '/'
+        end
     end 
 end

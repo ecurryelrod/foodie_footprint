@@ -23,6 +23,9 @@ class ApplicationController < Sinatra::Base
     elsif params[:user][:name] == "" || params[:user][:password] == ""
       flash[:message] = "Fields cannot be blank. Please enter username and password to log in."
       redirect to '/'
+    elsif !@user.authenticate(params[:user][:password])
+      flash[:message] = "Incorrect password. Please try again"
+      redirect to '/'
     else
       flash[:message] = "Unsername does not exist. Please create an account to log in"
       redirect to '/signup'
