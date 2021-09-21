@@ -13,7 +13,7 @@ Specs:
 - [x] Include user accounts with unique login attribute (username or email)
     - User can login with name, username (which must be unique), and secure password.
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
-    - Users can create new restaurants and locations through the `/restaurants` URL. A user can edit a restaurant through `restaurants/:id/edit` or delete a restaurant through `/restaurants/:id/edit` URL's. Users can also delete locations associated with themselves but not from the database through `/locations/:id` URL.
+    - Users can create new restaurants and locations through the `/restaurants` URL. A user can edit a restaurant through PATCH `restaurants/:slug` or delete a restaurant through DELETE `/restaurants/:slug` actions. Users can also delete locations associated with themselves but not from the database through DELETE `/locations/:slug` action.
 - [x] Ensure that users can't modify content created by other users
     - User's can only modify their own content through ```ruby if @restaurant && @restaurant.user == current_user ``` code in each restaurant controller patch or delete action (as seen in below example):
     ```ruby
