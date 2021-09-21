@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
             @restaurants = @location.restaurants.where(user_id: current_user.id).order(:name)
             erb :'/locations/show'
         else
-            redirect to '/login'
+            redirect to '/'
         end
     end
 

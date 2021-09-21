@@ -19,41 +19,29 @@ class UsersController < ApplicationController
     end
 
     get '/users/:slug' do
-        if logged_in?
-            @user = User.find(session[:user_id])
-            @locations = @user.locations.order(:name)
-            erb :'/users/home'
-        else
-            redirect to '/'
-        end
+        redirect_if_not_logged_in
+        @user = User.find(session[:user_id])
+        @locations = @user.locations.order(:name)
+        erb :'/users/home'
     end
 
     get '/users/:slug/edit' do
-        if logged_in?
-            @user = User.find(session[:user_id])
-            erb :'/users/edit'
-        else
-            redirect to '/login'
-        end
+        redirect_if_not_logged_in
+        @user = User.find(session[:user_id])
+        erb :'/users/edit'
     end
 
     patch '/users/:slug' do
-        if logged_in?
-            @user = User.find(session[:user_id])
-            @user.update(params[:user])
-            flash[:message] = "Your profile has been updated."
-            redirect to "/users/#{@user.slug}"
-        else
-            redirect to '/'
-        end
+        redirect_if_not_logged_in
+        @user = User.find(session[:user_id])
+        @user.update(params[:user])
+        flash[:message] = "Your profile has been updated."
+        redirect to "/users/#{@user.slug}"
     end
 
     get '/logout' do
-        if logged_in?
-            session.clear
-            redirect to '/'
-        else 
-            redirect to '/'
-        end
+        redirect_if_not_logged_in
+        session.clear
+        redirect to '/'
     end 
 end
