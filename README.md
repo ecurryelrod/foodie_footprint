@@ -15,7 +15,7 @@ Welcome to the Foodie Footprint web application! This application allows users t
 
 - Create an account by clicking the corresponding button on the login page
 - Add your first restaurant/location with the required information.
-- You can store favorite meals?????
+- You can keep notes on favorite meals or other things you liked about a restaurant
 - You can edit a given restaurant or delete a location or restaurant
 - Once the first restaurant is added for a certain location, the user's homepage will show a list of locations saved.
 - Click on a location to view the list of restaurants. 

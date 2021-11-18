@@ -3,17 +3,29 @@
 <% end %>
 
 <header>
-    <h1>Welcome to Foodie Footprint!</h1>
+<div class= 'all_titles'>
+    <h1 id="headers">Welcome to Foodie Footprint!</h1>
+</div>
 </header>
 <br>
-<div>
+<div class='forms'><!-- create a class of form for all your forms throughout the website -->
     Log In or <a href="/signup"><button type="submit">Create an Account</button></a>
-    <br><br>
-    <div id="login">
-    <form action="/login" method="POST">
-        <input type="text" name="user[username]" placeholder="Username">
-        <input type="password" name="user[password]" placeholder="Password">
-        <button type="submit">Log In</button>
-    </form>
+    <br>
+    <div class="login">
+        <form action="/login" method="POST">
+            <input type="text" name="user[username]" placeholder="Username">
+            <input type="password" name="user[password]" placeholder="Password">
+            <button type="submit">Log In</button>
+        </form>
     </div>
+</div>
+<div class='comments'>
+    <!-- another part of the website  
+    use divs to create boxes 
+    comments would be 1 box with class styling
+    forms would be another with class styling
+    as you create your show, index, edit, create pages assign those classes to your boxes
+    
+    When designing start with one form and style it to your liking using MDN mozilla guide
+    -->
 </div>

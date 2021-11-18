@@ -21,6 +21,9 @@
 
   .wrapper {
     background: #87A8A4;
+    display: flexbox;
+    min-width: 300px;
+    
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
